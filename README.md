@@ -2,7 +2,7 @@
 
 ## [Ubuntu](ubuntu)
 
-1. [Network](ubuntu/network)
-2. [SSH](ubuntu/ssh)
+1. [Network](ubuntu/network.md)
+2. [SSH](ubuntu/ssh.md)
 
 ## [Windows](windows)

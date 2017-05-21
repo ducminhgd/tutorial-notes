@@ -13,5 +13,5 @@
     ```
 
     with: eth1 is the interface that you want to set as static.  
-2. Restart network: `/etc/init.d/networking restart` or `ifdown eth0 && ifup eth0`  
+2. Restart network: `/etc/init.d/networking restart` or `ifdown eth1 && ifup eth1`  
 3. Reboot machine `reboot`  
