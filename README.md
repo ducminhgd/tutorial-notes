@@ -8,3 +8,7 @@
 ## [Windows](windows)
 
 1. [VirtualBox](windows/virtualbox.md)
+
+## [Web][web]
+
+1. [Prevent iFrame loading](web/prevent-iframe-loading.md)
