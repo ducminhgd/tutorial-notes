@@ -11,4 +11,4 @@
 
 ## [Web][web]
 
-1. [Prevent iFrame loading](web/prevent-iframe-loading.md)
+1. [Prevent iFrame embedded](web/prevent-iframe-embedded.md)
