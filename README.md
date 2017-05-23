@@ -9,6 +9,6 @@
 
 1. [VirtualBox](windows/virtualbox.md)
 
-## [Web][web]
+## [Web](web)
 
 1. [Prevent iFrame embedded](web/prevent-iframe-embedded.md)
