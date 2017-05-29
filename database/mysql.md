@@ -143,3 +143,48 @@ The following options may be given as the first argument:
 Variables (--variable-name=value)
 and boolean options {FALSE|TRUE}  Value (after reading options)
 ```
+
+# Publish MySQL connection
+
+```
+$ sudo nano /etc/mysql/my.cnf
+```
+
+Add or edit this line in `[mysqld]` section
+
+```
+bind-address    = 0.0.0.0
+```
+
+Restart service MySQL
+
+```
+$ sudo service mysql restart
+```
+
+# Create user
+
+`CREATE USER '<username>'@'<host>' IDENTIFIED BY '<password>';`
+
+# Grant permission
+
+`GRANT ALL PRIVILEGES ON *.* TO '<username>'@'<host>';`
+
+# Create database
+
+`CREATE DATABASE <db_name> DEFAULT CHARACTER SET='utf8' COLLATE 'utf8_general_ci';`
+
+# Run SQL file
+
+## With logging in
+
+```
+mysql> USE <db_name>;
+mysql> source path/to/file.sql;
+```
+
+## Without logging in
+
+```
+$ mysql -u <username> <dbname> < path/to/file.sql
+```
