@@ -8,6 +8,7 @@
 ## [Python](python)
 
 1. [Command cheatsheet](python/command-cheatsheet.md)
+2. [Pycharm](python/pycharm.md)
 
 ## [Ubuntu](ubuntu)
 
