@@ -24,3 +24,38 @@
 | Generate private key and cerificate RSA, PEM format             | `openssl req -newkey rsa:2048 -x509 -days 3650 -keyout ved_pri.pem -out cert.cer -new -nodes ` |                                                                                                                                            |
 | Generate private key and **request** cerificate RSA, PEM format | `openssl req -newkey rsa:2048 -x509 -days 3650 -keyout ved_pri.pem -out cert.cer`              |                                                                                                                                            |
 | Check package available versions                                | `apt-cache policy <package_name>`                                                              |                                                                                                                                            |
+| SSH key print openSSH public key to PEM format                  | `ssh-keygen -f path_to_pub_file -e -m pem`                                                     |                                                                                                                                            |
+
+
+# Make process still runs even close terminal
+
+`nohup` is defined by POSIX while `disown` is not. This means that while many shells (e.g. `bash`, `zsh`, `ksh`) have it, others (for example `tcsh`, `csh`, `dash` and `sh`) won't have it.
+
+`nohup` will already disown the process.
+
+`disown` can be used _after_ a command has been launched while `nohup` must be used _before_.
+
+## Disown then background
+
+1. Press `Ctrl` + `Z`, take a look at the number of the process
+2. `disown -h %<number>`
+3. `bg 1`
+
+For example
+
+```
+$ sudo tailf /var/log/my_log1.log
+# Ctrl + Z
+[1]+  Stopped                 sudo tailf /var/log/my_log1.log
+$ disown -h %1
+$ bg 1
+$ sudo tailf /var/log/my_log2.log
+# Ctrl + Z
+[2]+  Stopped                 sudo tailf /var/log/my_log2.log
+$ disown -h %2
+$ bg 2
+```
+
+## Nohup
+
+`nohup <command> &`
