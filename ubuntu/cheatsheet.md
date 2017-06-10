@@ -59,3 +59,56 @@ $ bg 2
 ## Nohup
 
 `nohup <command> &`
+
+# Optimized server
+
+## Open files limit
+
+Most OS can change the open-files limit. Example:
+
+```
+$ ulimit -n 65536
+```
+To permanently set the soft and hard values _for all users of the system_ to allow for up to 65536 open files.
+Edit `/etc/security/limits.conf` and append the following two lines:
+
+```
+*       soft    nofile  65535
+*       hard    nofile  65535
+```
+Save file. Start a new session so that the limits take effect (Logout -> Login).
+
+## More ports for testing
+
+```
+sudo sysctl -w net.ipv4.ip_local_port_range="1025 65535"
+```
+
+## Increase the maximum number of possible open file descriptors:
+
+```
+echo 300000 | sudo tee /proc/sys/fs/nr_open
+echo 300000 | sudo tee /proc/sys/fs/file-max
+```
+
+## Kernel and Network Tuning
+Edit `/etc/sysctl.conf`
+
+```
+net.ipv4.tcp_max_syn_backlog = 40000
+net.core.somaxconn = 40000
+net.core.wmem_default = 8388608
+net.core.rmem_default = 8388608
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_fin_timeout = 15
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_moderate_rcvbuf = 1
+net.core.rmem_max = 134217728
+net.core.wmem_max = 134217728
+net.ipv4.tcp_mem  = 134217728 134217728 134217728
+net.ipv4.tcp_rmem = 4096 277750 134217728
+net.ipv4.tcp_wmem = 4096 277750 134217728
+net.core.netdev_max_backlog = 300000
+```
