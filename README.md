@@ -2,28 +2,29 @@
 
 ## [Databases](database)
 
-1. [MySQL](database/mysql.md)
-2. [SQLite](database/sqlite.md)
+- [MySQL](database/mysql.md)
+- [SQLite](database/sqlite.md)
 
 ## [Python](python)
 
-1. [Command cheatsheet](python/command-cheatsheet.md)
-2. [Pycharm](python/pycharm.md)
+- [Command cheatsheet](python/command-cheatsheet.md)
+- [Pycharm](python/pycharm.md)
 
 ## [Ubuntu](ubuntu)
 
-1. [Cheatsheet](ubuntu/cheatsheet.md)
-2. [Network](ubuntu/network.md)
-3. [SSH](ubuntu/ssh.md)
+- [Cheatsheet](ubuntu/cheatsheet.md)
+- [Network](ubuntu/network.md)
+- [PHP](ubuntu/php.md)
+- [SSH](ubuntu/ssh.md)
 
 ## [Web](web)
 
-1. [Prevent iFrame embedded](web/prevent-iframe-embedded.md)
+- [Prevent iFrame embedded](web/prevent-iframe-embedded.md)
 
 ### [Web server](web/web-server)
 
-1. [Apache](web/web-server/apache.md)
+- [Apache](web/web-server/apache.md)
 
 ## [Windows](windows)
 
-1. [VirtualBox](windows/virtualbox.md)
+- [VirtualBox](windows/virtualbox.md)
