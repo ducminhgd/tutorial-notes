@@ -162,6 +162,10 @@ Restart service MySQL
 $ sudo service mysql restart
 ```
 
+# List all user
+
+`SELECT User, Host, Password FROM mysql.user;`
+
 # Create user
 
 `CREATE USER '<username>'@'<host>' IDENTIFIED BY '<password>';`

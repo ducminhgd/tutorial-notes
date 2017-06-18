@@ -25,6 +25,8 @@
 | Generate private key and **request** cerificate RSA, PEM format | `openssl req -newkey rsa:2048 -x509 -days 3650 -keyout ved_pri.pem -out cert.cer`              |                                                                                                                                            |
 | Check package available versions                                | `apt-cache policy <package_name>`                                                              |                                                                                                                                            |
 | SSH key print openSSH public key to PEM format                  | `ssh-keygen -f path_to_pub_file -e -m pem`                                                     |                                                                                                                                            |
+| Change hostname                                                 | Edit file `/etc/hostname` and Edit `127.0.0.1 <hostname>` in `/etc/hosts`                      | Can do either reload network or reboot machine                                                                                             |
+|                                                                 |                                                                                                |                                                                                                                                            |
 
 
 # Make process still runs even close terminal
@@ -112,3 +114,28 @@ net.ipv4.tcp_rmem = 4096 277750 134217728
 net.ipv4.tcp_wmem = 4096 277750 134217728
 net.core.netdev_max_backlog = 300000
 ```
+
+# Add user to sudo
+
+`adduser <username> sudo`
+
+or
+
+`usermod -aG sudo <username>`
+
+or
+
+```
+visudo
+
+# Add this line
+<username> ALL=(ALL) [NOPASSWD:]ALL
+```
+
+# Changing shell
+
+`chsh -s /bin/bash <username>`
+
+If not success, use the following command
+
+`usermod -s /bin/bash <username>`
