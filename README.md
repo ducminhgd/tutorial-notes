@@ -17,6 +17,12 @@
 - [PHP](ubuntu/php.md)
 - [SSH](ubuntu/ssh.md)
 
+## Vagrant
+
+- [Cheatsheet](vagrant/cheatsheet.md)
+- [Self hosted vagrant boxes with versioning](vagrant/self-hosted-vagrant-boxes-with-versioning.md)
+- [Vagrant with PyCharm](vagrant/vagrant-with-pycharm.md)
+
 ## [Web](web)
 
 - [Prevent iFrame embedded](web/prevent-iframe-embedded.md)
