@@ -17,7 +17,7 @@
 - [PHP](ubuntu/php.md)
 - [SSH](ubuntu/ssh.md)
 
-## Vagrant
+## [Vagrant](vagrant)
 
 - [Cheatsheet](vagrant/cheatsheet.md)
 - [Self hosted vagrant boxes with versioning](vagrant/self-hosted-vagrant-boxes-with-versioning.md)
