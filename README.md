@@ -34,3 +34,7 @@
 ## [Windows](windows)
 
 - [VirtualBox](windows/virtualbox.md)
+
+## [Others](others)
+
+- [Git](others/git.md)
