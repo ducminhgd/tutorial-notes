@@ -1,9 +1,10 @@
 # Cheatsheet
 
-| Purpose                      | Command or action | Description                     |
-|------------------------------|-------------------|---------------------------------|
-| Password **root** account    |                   | No                              |
-| Password **vagrant** account |                   | `vagrant`, has sudo permisssion |
+| Purpose                       | Command or action                                                                                              | Description                     |
+|-------------------------------|----------------------------------------------------------------------------------------------------------------|---------------------------------|
+| Password **root** account     |                                                                                                                | No                              |
+| Password **vagrant** account  |                                                                                                                | `vagrant`, has sudo permisssion |
+| Public network with static IP | Edit VagrantFile, add this line `config.vm.network "public_network", ip: "10.62.0.7", netmask:"255.255.255.0"` |                                 |
 
 # Tips and Notes
 
