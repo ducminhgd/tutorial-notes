@@ -58,3 +58,31 @@ def get_message(response_code):
 ```
 {{ object.response_code|get_message }}
 ```
+
+# Run a file as script in Django
+
+1. Add these line at the end of file
+
+```
+if __name__ == '__main__':
+    import os
+
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bank_giro.settings")
+    
+    # YOUR CODE RUN HERE
+```
+
+2. In terminal, run this command:
+
+```
+export PYTHONPATH=$PYTHONPATH:path/to/project/source/code # this will be lost after you logout
+```
+
+3. Run python file
+
+```
+python path/to/python/file
+
+# Or using virtual environment
+path/to/virtual-environment/bin/python path/to/python/file
+```
