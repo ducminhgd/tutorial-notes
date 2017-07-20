@@ -26,7 +26,7 @@
 | Check package available versions                                | `apt-cache policy <package_name>`                                                              |                                                                                                                                            |
 | SSH key print openSSH public key to PEM format                  | `ssh-keygen -f path_to_pub_file -e -m pem`                                                     |                                                                                                                                            |
 | Change hostname                                                 | Edit file `/etc/hostname` and Edit `127.0.0.1 <hostname>` in `/etc/hosts`                      | Can do either reload network or reboot machine                                                                                             |
-|                                                                 |                                                                                                |                                                                                                                                            |
+| Check version of SSL/TLS of a server                            | `openssl ciphers -v | awk '{print $2}' | sort | uniq`                                          |                                                                                                                                            |
 
 
 # Make process still runs even close terminal
