@@ -1,13 +1,13 @@
 
 # Purpose
-Downloaded ebooks .rar or .zip files usually contain multiple formats: pdf, epub, mobi.
-This batch script could be used to generate another batch script to remove all *.mobi file if there is a *.epub file with the same name, as well as *.epub files if there is *.pdf file.
+Downloaded ebook files (`.rar`/`.zip`) usually contain multiple formats: `pdf`, `epub`, `mobi`.
+This batch script could be used to generate another batch script to remove all `.mobi` files if there is a `.epub` file with the same name, as well as `.epub` files if there is `.pdf` file.
 
 # Usage
-1. Open ebook folder, copy _find_dup.bat to there.
+1. Open ebook folder, copy `_find_dup.bat` to there.
 2. Open `cmd`
-3. Run _find_dup.bat > _del_dup.bat
-4. Check before run _del_dup.bat
+3. Run `_find_dup.bat > _del_dup.bat`
+4. Check before run `_del_dup.bat`
 
 # Script
 Save this as **_find_dup.bat**
