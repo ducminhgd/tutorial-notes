@@ -86,3 +86,18 @@ python path/to/python/file
 # Or using virtual environment
 path/to/virtual-environment/bin/python path/to/python/file
 ```
+
+# Security
+
+## Config for sessions and cookies
+
+Add these configurations into `settings.py` file:
+
+```python
+SESSION_COOKIE_DOMAIN = None  # Just remove the SESSION_COOKIE_DOMAIN setting or set it to None. Django will automatically use the current domain.
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_AGE = 5 * 60
+```
