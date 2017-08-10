@@ -7,8 +7,15 @@
 
 ## [Python](python)
 
+- [Check TLS with Python 2.7.9](python/check_tls_2.7.9.py)
+- [Check TLS with Python 3](python/check_tls_3.py)
 - [Command cheatsheet](python/command-cheatsheet.md)
 - [Pycharm](python/pycharm.md)
+- [Shell script delete compiled python](python/delete-compiled-python.sh)
+- [Django](python/django.md)
+- [Format function](python/format_function,md)
+- [PyCharm](python/pycharm.md)
+- [Relay service](python/relay.py)
 
 ## [Ubuntu](ubuntu)
 
