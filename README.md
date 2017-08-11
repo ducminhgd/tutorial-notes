@@ -20,6 +20,7 @@
 ## [Ubuntu](ubuntu)
 
 - [Cheatsheet](ubuntu/cheatsheet.md)
+- [Fake shell for FTP User](ubuntu/fake_shell_for_ftp_user.md)
 - [Network](ubuntu/network.md)
 - [PHP](ubuntu/php.md)
 - [SSH](ubuntu/ssh.md)
@@ -44,4 +45,7 @@
 
 ## [Others](others)
 
+- [Compact JSON](others/compact-json.md)
 - [Git](others/git.md)
+- [ISO Message 8583](others/isomessage8583.md)
+- [Sign and verify data by pair keys](others/sign-verify-by-pair-keys.md)
