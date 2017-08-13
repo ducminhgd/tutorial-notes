@@ -71,3 +71,36 @@ public class Main {
 ```
 
 # C#
+
+```csharp
+string MyDictionaryToJson(Dictionary<int, List<int>> dict)
+{
+    var entries = dict.Select(d =>
+        string.Format("\"{0}\": [{1}]", d.Key, string.Join(",", d.Value)));
+    return "{" + string.Join(",", entries) + "}";
+}
+```
+
+## JavaScriptSerializer Snippet
+```csharp
+// using System.Web.Script.Serialization;
+
+Dictionary<string, object> dictss = new Dictionary<string, object>();
+
+dictss.Add("Method", "LOGIN");
+dictss.Add("User", "User_Name");
+dictss.Add("Pass", "Password");
+dictss.Add("Type", "User_Type");
+
+Dictionary<string, object> skills = new Dictionary<string, object>();
+skills.Add("1", "SKILL-1");
+skills.Add("2", "SKILL-2");
+skills.Add("3", "SKILL-3");
+
+dictss.Add("Skill", skills);
+
+JavaScriptSerializer serializer = new JavaScriptSerializer();
+string jsonString = serializer.Serialize((object)dictss);
+
+//var json = JsonConvert.SerializeObject(dictss, Formatting.None);
+```
