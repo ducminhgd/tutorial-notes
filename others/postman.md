@@ -25,9 +25,9 @@ You can use it in your requests, for e.g:
 - Headers: Content-type:`{{content_json}}`
 
 Postman has those auto generated variables:
-- {{$guid}} : Adds a v4 style guid
-- {{$timestamp}}: Adds the current timestamp
-- {{$randomInt}}: Adds a random integer between 0 and 1000
+- `{{$guid}}` : Adds a v4 style guid
+- `{{$timestamp}}`: Adds the current timestamp
+- `{{$randomInt}}`: Adds a random integer between 0 and 1000
 
 ## Write test scripts
 
@@ -61,3 +61,7 @@ For `console.log` or any similar command, you have to enable Developer Tools for
 1. Browse `chrome://flags` on Google Chrome
 2. Enable `Debugging for packed apps`
 3. Right-click on Postman screen, choose `Inspect` or `Ctrl + Shift + I` on Windows for short.
+
+## Generate code snippets
+
+Link: [https://www.getpostman.com/docs/postman/sending_api_requests/generate_code_snippets](https://www.getpostman.com/docs/postman/sending_api_requests/generate_code_snippets)
