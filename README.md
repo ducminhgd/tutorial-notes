@@ -16,7 +16,7 @@
 - [Format function](python/format_function,md)
 - [PyCharm](python/pycharm.md)
 - [Relay service](python/relay.py)
-- [Upload to PyPi](python/upload-to-pypi.py)
+- [Upload to PyPi](python/upload-to-pypi.md)
 
 ## [Ubuntu](ubuntu)
 
