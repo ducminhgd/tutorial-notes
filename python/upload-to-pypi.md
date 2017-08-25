@@ -1,5 +1,7 @@
 # Upload package to PyPi
 
+_Note_: tested and success with Python 3.5, but failed with Python 2.7 and 3.4, still have no idea why they failed. :(
+
 ## Step 1: create accounts
 
 Create your account on [PyPi Live](https://pypi.python.org/pypi?%3Aaction=register_form) and [PyPi test](https://testpypi.python.org/pypi?%3Aaction=register_form)
