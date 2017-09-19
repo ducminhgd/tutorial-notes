@@ -75,6 +75,105 @@ openssl_free_key($pubkeyid);
 ```
 
 # Java
+```java
+/*
+Generate a 2048-bit RSA private key
+$ openssl genrsa -out private_key.pem 2048
+
+Convert private Key to PKCS#8 format (so Java can read it)
+$ openssl pkcs8 -topk8 -inform PEM -outform DER -in private_key.pem -out private_key.der -nocrypt
+
+Output public key portion in DER format (so Java can read it)
+$ openssl rsa -in private_key.pem -pubout -outform DER -out public_key.der
+ */
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.IOException;
+import java.security.*;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+
+public class SignatureHelper {
+    private static PrivateKey loadPrivateKey(String filename) throws IOException {
+        byte[] keyBytes = FileUtils.readAllBytes(filename);
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+
+        try {
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            return kf.generatePrivate(spec);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new UnknownError(e.getMessage());
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+            throw new UnknownError(e.getMessage());
+        }
+    }
+
+    private static PublicKey loadPublicKey(String filename) throws IOException {
+        byte[] keyBytes = FileUtils.readAllBytes(filename);
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+
+        try {
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            return kf.generatePublic(spec);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new UnknownError(e.getMessage());
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+            throw new UnknownError(e.getMessage());
+        }
+    }
+
+    public static String sign(String privateKeyPath, String data)
+            throws IOException, InvalidKeyException, SignatureException {
+        byte[] message = data.getBytes();
+        try {
+            PrivateKey privateKey = loadPrivateKey(privateKeyPath);
+            Signature signer = Signature.getInstance("SHA256withRSA");
+            signer.initSign(privateKey);
+            signer.update(message);
+            byte[] signature = signer.sign();
+            byte[] base64_encoded_signature = Base64.encodeBase64(signature);
+            return new String(base64_encoded_signature);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new UnknownError(e.getMessage());
+        }
+    }
+
+    public static boolean verify(String publicKeyPath, String data, String signature)
+            throws IOException, InvalidKeyException, SignatureException {
+        byte[] message = data.getBytes();
+        byte[] base64_decoded_signature = Base64.decodeBase64(signature);
+        try {
+            PublicKey publicKey = loadPublicKey(publicKeyPath);
+            Signature verifier = Signature.getInstance("SHA256withRSA");
+            verifier.initVerify(publicKey);
+            verifier.update(message);
+            return verifier.verify(base64_decoded_signature);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new UnknownError(e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        String data = "Hello world!";
+        String privateKeyPath = "private_key.der";
+        String publicKeyPath = "public_key.der";
+
+        String signature = SignatureHelper.sign(privateKeyPath, data);
+        System.out.println(signature);
+
+        boolean verified = SignatureHelper.verify(publicKeyPath, data, signature);
+        System.out.println(verified);
+    }
+}
+
+```
 
 # C#
 
