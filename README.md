@@ -31,6 +31,7 @@
 - [Cheatsheet](vagrant/cheatsheet.md)
 - [Self hosted vagrant boxes with versioning](vagrant/self-hosted-vagrant-boxes-with-versioning.md)
 - [Vagrant with PyCharm](vagrant/vagrant-with-pycharm.md)
+- [Vagrant with Docker](vagrant/vagrant-docker/Vagrantfile)
 
 ## [Web](web)
 
