@@ -14,13 +14,15 @@ Save this as **_find_dup.bat**
 
 ```batch
 @echo OFF
-For /F "tokens=*" %%G in ('dir /b *.mobi') do (
-    if exist "%%~dpnG.epub" (
+For /F "tokens=*" %%G in ('dir /b *.azw3') do (
+    if exist "%%~dpnG.mobi" or exist "%%~dpnG.epub" or exist "%%~dpnG.pdf" (
 		@echo ON
         echo del "%%~dpnxG"
 		@echo OFF
     )
-	if exist "%%~dpnG.pdf" (
+)
+For /F "tokens=*" %%G in ('dir /b *.mobi') do (
+    if exist "%%~dpnG.epub" or exist "%%~dpnG.pdf" (
 		@echo ON
         echo del "%%~dpnxG"
 		@echo OFF
