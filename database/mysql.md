@@ -192,3 +192,9 @@ mysql> source path/to/file.sql;
 ```
 $ mysql -u <username> <dbname> < path/to/file.sql
 ```
+
+# Monitoring process
+
+`mysqladmin -u <user> -p -i 1 processlist`
+
+`-i` means `interval`
