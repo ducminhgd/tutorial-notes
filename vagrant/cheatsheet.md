@@ -8,4 +8,6 @@
 
 # Tips and Notes
 
-Each Vagrant profile/VM should be stored in a independent directory, for example: `/vagrant/vm1`, `vagrant/vm2`.
+1. Each Vagrant profile/VM should be stored in a independent directory, for example: `/vagrant/vm1`, `vagrant/vm2`.
+
+2. To install python virtual environment inside a synced folder using option `--always-copy`: `virtualenv myproject/.venv --always-copy`
