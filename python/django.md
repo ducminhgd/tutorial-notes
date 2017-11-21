@@ -101,3 +101,32 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_AGE = 5 * 60
 ```
+
+# Connect to Microsoft SQL Server
+
+Please take a look at [Create connection from Ubuntu to MS SQL Server](../ubuntu/create_connection_to_mssql.md)
+
+## Python packages requirements
+
+```shell
+# requirements.txt
+Django==1.11.6
+django-pyodbc-azure==1.11.0.0
+pyodbc==4.0.21
+pytz==2017.3
+```
+
+## Django settings
+
+```python
+DATABASES = {
+    'default': {
+        'NAME': 'database_name',
+        'ENGINE': 'sql_server.pyodbc', # Must be
+        'HOST': 'MSSQLDev', # Which is configured in /etc/freetds/freetds.conf file
+        'USER': 'python',
+        'PASSWORD': 'python',
+        # 'PORT': '1433',
+    },
+}
+```
