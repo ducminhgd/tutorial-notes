@@ -3,11 +3,11 @@
 ## Install packages
 
 ```shell
-sudo apt-get install unixodbc
-sudo apt-get install unixodbc-dev
-sudo apt-get install freetds-dev
-sudo apt-get install freetds-bin
-sudo apt-get install tdsodbc
+sudo apt-get install -y unixodbc
+sudo apt-get install -y unixodbc-dev
+sudo apt-get install -y freetds-dev
+sudo apt-get install -y freetds-bin
+sudo apt-get install -y tdsodbc
 ```
 
 ## Edit configuration files
