@@ -23,10 +23,14 @@ Add new server information into `/etc/freetds/freetds.conf` file
         tds version = 7.0
 ```
 
-Add `/etc/odbc.ini` file
+~Add `/etc/odbc.ini` file~
 
 ```shell
 # /etc/odbc.ini
 Driver = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so
 Setup = /usr/lib/x86_64-linux-gnu/odbc/libtdsS.so
 ```
+
+Test connection
+
+root@vagrant:~# *TDSVER=7.0* tsql -H `<ip_addr>` -p `<port>` -U `<username>`
