@@ -23,14 +23,21 @@ Add new server information into `/etc/freetds/freetds.conf` file
         tds version = 7.0
 ```
 
-~Add `/etc/odbc.ini` file~
-
+Register FreeTDS driver with UnixODBC
+* create file `/tmp/tds.driver.template` contains this:
 ```shell
-# /etc/odbc.ini
+# /tmp/tds.driver.template
+[FreeTDS]
 Driver = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so
 Setup = /usr/lib/x86_64-linux-gnu/odbc/libtdsS.so
+```
+* run this command:
+```shell
+odbcinst -i -d -f /tmp/tds.driver.template
 ```
 
 Test connection
 
-root@vagrant:~# *TDSVER=7.0* tsql -H `<ip_addr>` -p `<port>` -U `<username>`
+```shell
+# TDSVER=7.0 tsql -H <ip_addr> -p <port> -U <username>
+```
