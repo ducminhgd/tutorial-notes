@@ -48,6 +48,8 @@
 
 - [VirtualBox](windows/virtualbox.md)
 
+## [Ansible](ansible)
+
 ## [Others](others)
 
 - [Compact JSON](others/compact-json.md)

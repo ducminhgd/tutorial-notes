@@ -93,7 +93,9 @@ ansible-playbook sample-playbook.yml -i inventory-file
 ```
 
 `register`: assign command execution state to variable
+
 `when`: condition statement
+
 `debug`: print
 
 ## Loops
