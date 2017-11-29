@@ -52,7 +52,7 @@ root-dir/   # arbitrary working directory name
 ### setup.py
 
 ```
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
     name='My Package',
@@ -61,7 +61,7 @@ setup(
     author='Gia Duong Duc Minh',
     author_email='giaduongducminh@gmail.com',
     url='Project URL such as Github',
-    packages=['mypackage', 'mypackage.subpackage'],
+    packages=find_packages(),
 )
 ```
 
