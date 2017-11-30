@@ -1,0 +1,45 @@
+---
+- name: Install docker in ubuntu
+  hosts: all
+  become: true
+  vars:
+    packages: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common' ]
+  tasks:
+    - name: https for apt
+      apt: name={{ item }} state=latest
+      with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    
+    - name: add apt signing key verify based on id
+      register: aptkey
+      apt_key:
+        id: 0EBFCD88
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+        
+    - name: add repos
+      when: aptkey|success
+      register: aptrepo
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+        
+    - name: update apt
+      when: aptrepo|success
+      register: aptupdate
+      apt:
+        update_cache: yes
+      
+    - name: install docker
+      when: aptupdate|success
+      apt: name=docker-ce state=latest
+
+    - name: install docker compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.17.1/docker-compose-Linux-x86_64
+        checksum: sha256:db0a7b79d195dc021461d5628a8d53eeb2e556d2548b764770fccabb0a319dd8
+        dest: /usr/local/bin/docker-compose
+        mode: 0555
