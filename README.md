@@ -50,6 +50,7 @@
 
 ## [Others](others)
 
+- [AMQP](others/amqp.md)
 - [Compact JSON](others/compact-json.md)
 - [Git](others/git.md)
 - [ISO Message 8583](others/isomessage8583.md)
