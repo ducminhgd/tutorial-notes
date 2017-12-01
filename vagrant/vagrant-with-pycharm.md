@@ -79,3 +79,7 @@ sudo virtualenv /venvs/python2/
 | `~/data/projects` | `/projects`   |
 
 2. If you are using Django (or something like this), please edit `127.0.0.1` to `0.0.0.0` for public. For e.g. `/venvs/dev-vm/bin/python path/to/project/manage.py runserver 0.0.0.0:8000`
+
+### Adding Vagrant VM for Project
+
+In PyCharm, choose `File` -> `Settings` (`Ctrl + Alt + A`), choose `Vagrant` under `Tools` section. For `Instance folder`, choose the directory that the `VagrantFile` stored in.
