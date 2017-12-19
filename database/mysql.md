@@ -174,6 +174,8 @@ $ sudo service mysql restart
 
 `GRANT ALL PRIVILEGES ON *.* TO '<username>'@'<host>';`
 
+`GRANT SELECT ON *.* TO 'username'@'host_or_wildcard' IDENTIFIED BY 'password';`
+
 # Create database
 
 `CREATE DATABASE <db_name> DEFAULT CHARACTER SET='utf8' COLLATE 'utf8_general_ci';`
