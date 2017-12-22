@@ -42,6 +42,7 @@
 - [Vagrant with PyCharm](vagrant/vagrant-with-pycharm.md)
 - [Vagrant with Docker](vagrant/vagrant-docker/Vagrantfile)
 - [Vagrant Ubuntu 16.04](vagrant/vagrant-ubuntu_16.04/Vagrantfile)
+- [Vagrant Kafka](vagrant/vagrant-kafka)
 
 ## [Web](web)
 

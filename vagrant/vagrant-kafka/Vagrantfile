@@ -1,0 +1,127 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "bento/ubuntu-16.04"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.102.30"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  #config.vm.synced_folder "D:/workspace", "/workspace"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  # config.vm.provider "virtualbox" do |vb|
+  #   # Display the VirtualBox GUI when booting the machine
+  #   vb.gui = true
+  #
+  #   # Customize the amount of memory on the VM:
+  #   vb.memory = "1024"
+  # end
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", inline: <<-SHELL
+
+    # REFERENCE: https://hevodata.com/blog/how-to-set-up-kafka-on-ubuntu-16-04/
+    
+    # Install Java
+    apt-get update -y
+    apt-get install -y default-jre
+
+    # Add JAVA_HOME
+    echo -e "\n" >> /etc/environment
+    echo 'JAVA_HOME="/usr/lib/jvm/default-java"' >> /etc/environment
+    source /etc/environment
+    echo $JAVA_HOME
+
+    # Install Zookeeper
+    apt-get install -y zookeeperd
+    #test
+    #telnet localhost 2181
+    #> ruok
+    #  imok
+    
+    # Create a service User for Kafka
+    adduser --system --no-create-home --disabled-password --disabled-login kafka
+
+    # Download Kafka
+    cd ~
+    wget http://mirror.downloadvn.com/apache/kafka/1.0.0/kafka_2.11-1.0.0.tgz
+
+    # Copy from /vagrant shared directory
+    #cp /vagrant/kafka_2.11-1.0.0.tgz ~
+
+    # Install Kafka
+    mkdir /opt/kafka
+    tar -xzf ~/kafka_2.11-1.0.0.tgz --directory /opt/kafka --strip-components 1
+    #rm ~/kafka_2.11-1.0.0.tgz
+
+    # Configuring Kafka Server
+    mkdir /tmp/kafka-logs
+    #cp /vagrant/server.properties /opt/kafka/config/server.properties
+    chown -R kafka:nogroup /opt/kafka
+    chown -R kafka:nogroup /tmp/kafka-logs
+
+    # Manually start Kafka service
+    #/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
+
+    # Configuring Kafka as a service launching on startup
+    cp /vagrant/kafka.service /etc/systemd/system/kafka.service
+    systemctl enable kafka
+    systemctl start kafka
+    
+    # Testing installation
+    #/opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+    #/opt/kafka/bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+    ## Start Producer
+    #/opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+
+    ## Start Consummer (in another terminal)
+    #/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+  
+  SHELL
+end
