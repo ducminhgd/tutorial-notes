@@ -139,3 +139,13 @@ visudo
 If not success, use the following command
 
 `usermod -s /bin/bash <username>`
+
+# Timezones
+
+## Ubuntu 16
+
+View current timezone `timedatectl`
+
+View list timezones `timedatectl list-timezones`
+
+Set timezone `timedatectl set-timezone Asia/Ho_Chi_Minh`
