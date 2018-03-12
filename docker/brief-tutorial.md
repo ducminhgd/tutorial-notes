@@ -24,7 +24,7 @@
     RUN apt-get install -y python-pip
     ```
 
-4. Build image with this syntax `docker build [OPTIONS] PATH | URL | -`, for example `docker build -t ducminhgd/ubuntu16.04-python3.6-unixodbc bash .`. Note that there is `.` (period) sign as current path.
+4. Build image with this syntax `docker build [OPTIONS] PATH | URL | -`, for example `docker build -t ducminhgd/ubuntu16.04-python3.6-unixodbc .`. Note that there is `.` (period) sign as current path.
 
 5. Login image to test: `docker run -it --rm ducminhgd/ubuntu16.04-python3.6-unixodbc bash`
 
