@@ -5,6 +5,7 @@
 ```shell
 sudo apt-get install -y unixodbc
 sudo apt-get install -y unixodbc-dev
+sudo apt-get install -y freetds-common 
 sudo apt-get install -y freetds-dev
 sudo apt-get install -y freetds-bin
 sudo apt-get install -y tdsodbc
