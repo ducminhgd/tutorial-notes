@@ -25,14 +25,18 @@ Add new server information into `/etc/freetds/freetds.conf` file
 ```
 
 Register FreeTDS driver with UnixODBC
+
 * create file `/tmp/tds.driver.template` contains this:
+
 ```shell
 # /tmp/tds.driver.template
 [FreeTDS]
 Driver = /usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so
 Setup = /usr/lib/x86_64-linux-gnu/odbc/libtdsS.so
 ```
+
 * run this command:
+
 ```shell
 odbcinst -i -d -f /tmp/tds.driver.template
 ```
