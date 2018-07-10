@@ -65,12 +65,17 @@
 
 ## [Docker](docker)
 
+## [Go](go)
+
+- [Installation](go/installation.md)
+
 ## [Others](others)
 
 - [AMQP](others/amqp.md)
 - [Compact JSON](others/compact-json.md)
 - [Git](others/git.md)
 - [ISO Message 8583](others/isomessage8583.md)
+- [Nginx](others/nginx.md)
 - [Postman](others/postman.md)
 - [Sign and verify data by pair keys](others/sign-verify-by-pair-keys.md)
 - [Sphinx](others/sphinx.md)
