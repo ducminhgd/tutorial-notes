@@ -61,14 +61,17 @@ config.vm.synced_folder "~/data/projects", "/projects"
 sudo apt-get update
 sudo apt-get instal python-pip
 sudo pip install virtualenv
-sudo virtualenv /venvs/python2/
+cd /data/projects/my_project
+virtualenv .venv -p python3.6 --always-copy
 ```
+
+Please remember `--always-copy`!
 
 ### Adding Interpreter to PyCharm
 
 1. **Settings** > **Project Interpreter**.
 2. Click on the gear icon, choose **Add remote**
-3. Choose checkbox **Vagrant**, point **Vagrant instance folder** (should be `path/to/dev-vm`) and point **Python interpreter path** to virtualenv's interpreter of guest machine (for e.g. `/venvs/dev-vm/bin/python`)
+3. Choose checkbox **Vagrant**, point **Vagrant instance folder** (should be `path/to/dev-vm`) and point **Python interpreter path** to virtualenv's interpreter of guest machine (for e.g. `/data/projects/my_project/.venv/bin/python`)
 
 ### Run configuration
 
@@ -78,7 +81,7 @@ sudo virtualenv /venvs/python2/
 |-------------------|---------------|
 | `~/data/projects` | `/projects`   |
 
-2. If you are using Django (or something like this), please edit `127.0.0.1` to `0.0.0.0` for public. For e.g. `/venvs/dev-vm/bin/python path/to/project/manage.py runserver 0.0.0.0:8000`
+2. If you are using Django (or something like this), please edit `127.0.0.1` to `0.0.0.0` for public. For e.g. `/data/projects/my_project/.venv/bin/python path/to/project/manage.py runserver 0.0.0.0:8000`
 
 ### Adding Vagrant VM for Project
 
