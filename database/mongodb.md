@@ -33,3 +33,46 @@ mongoexport -h <hostname>:<port> -u <username> --db=<your_db> --collection=<your
 _Note:_
 
 - If your account, `<username>` and `<password>`, is granted for a specifice database, `<your_db>`, then `--authenticationDatabase` should be `--authenticationDatabase=<your_db>`.
+
+## Create user
+
+### Write
+
+With [MongoDB 3.6](https://docs.mongodb.com/v3.6/reference/method/db.createUser/)
+
+```javascript
+use admin
+db.createUser({
+    user: "user-write",
+    pwd: "user-write-password",
+    customData: {
+        createdBy: "minh.gdd"
+    },
+    roles: [
+        {
+            role: "readWrite",
+            db: "dbname"
+        }
+    ]
+})
+```
+
+
+### Read-only
+
+```javascript
+use admin
+db.createUser({
+    user: "user-read",
+    pwd: "user-read-password",
+    customData: {
+        createdBy: "minh.gdd"
+    },
+    roles: [
+        {
+            role: "read",
+            db: "dbname"
+        }
+    ]
+})
+```
