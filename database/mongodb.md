@@ -76,3 +76,15 @@ db.createUser({
     ]
 })
 ```
+
+## Dump & restore database
+
+`mongodump --host=<hostname> --port=27017 --archive=output.archive --username=uname --password=pw --authenticationDatabase=admin --authenticationMechanism="SCRAM-SHA-1" --db=dbname --collection=cname`
+
+`mongorestore --host=<hostname> --port=27017 --archive=input.archive --username=uname --password=pw --authenticationDatabase=admin --authenticationMechanism="SCRAM-SHA-1"`
+
+## Export & import database
+
+`mongoexport -h <hostname> --port 27017 -u uname -p pw --db dbname --collection cname --authenticationDatabase dbname --authenticationMechanism "SCRAM-SHA-1" --out orders.json`
+
+`mongoimport -h <hostname> --port 27017 -u uname -p pw --db dbname --collection cname --authenticationDatabase dbname --authenticationMechanism "SCRAM-SHA-1" --file input.json`
