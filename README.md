@@ -36,6 +36,7 @@
 - [Cheatsheet](ubuntu/cheatsheet.md)
 - [Create connection to Microsoft SQL Server](ubuntu/create_connection_to_mssql.md)
 - [Fake shell for FTP User](ubuntu/fake_shell_for_ftp_user.md)
+- [Git functions](ubuntu/git-functions.md)
 - [Network](ubuntu/network.md)
 - [PHP](ubuntu/php.md)
 - [SSH](ubuntu/ssh.md)
