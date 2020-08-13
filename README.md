@@ -60,11 +60,22 @@
 
 ## [Windows](windows)
 
+- [Delete duplicated ebook](windows/del_duplicate_ebooks.md)
 - [VirtualBox](windows/virtualbox.md)
+- [WSL 2](windows/wsl2.md)
 
 ## [Ansible](ansible)
 
+- [Read me](ansible/README.md)
+- [Documents](ansible/docs)
+- [Playbooks](ansible/playbooks)
+
 ## [Docker](docker)
+
+- [Brieft tutorial](docker/brief-tutorial.md)
+- [Docker cheatsheet](docker/docker-cheatsheet.md)
+- [Docker with windows home](docker/docker-with-windows-home.md)
+- [How docker works](docker/how-docker-works.md)
 
 ## [Go](go)
 
