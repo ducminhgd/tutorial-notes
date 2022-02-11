@@ -4,11 +4,11 @@
 
 ```bash
 apt-get update
-apt-get install -y figlet fonts-powerline
+apt-get install -y figlet fonts-powerline python3.7 python3.8
 
 echo "SET DEFAULT PYTHON 3.8"
 update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
-apt-get install python3-pip zsh pipenv
+apt-get install -y python3-pip zsh pipenv
 
 echo "INSTALL DEV TOOLS"
 apt-get install -y redis-tools libmysqlclient-dev
