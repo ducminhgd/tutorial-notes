@@ -1,8 +1,3 @@
-# Install WSL 2 Dist
-
-## Ubuntu (20.04)
-
-```bash
 apt-get update
 apt-get install -y figlet fonts-powerline python python3
 
@@ -20,4 +15,3 @@ echo "INSTALL DIRENV"
 curl -sfL https://direnv.net/install.sh | bash
 echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
-```

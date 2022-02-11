@@ -47,4 +47,21 @@ git-pull() {
         echo "────────────────────────────────────────────────────────────────────────────────────────────────────────\n"
     done
 }
+git-sync() {
+    figlet "Sync all"
+    if [ -z "$1" ]; then
+        dir=$(pwd)
+    else
+        dir="$1"
+    fi
+    for i in $(find "$dir" -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev); do
+        echo "════════════════════════════════════════════════════════════════════════════════════════════════════════"
+        echo "Directory: $i | Branch: $(git -C "$i" rev-parse --abbrev-ref HEAD)"
+        remote=origin; for brname in `git -C "$i" branch -r | grep $remote | grep -v master | grep -v HEAD | awk '{gsub(/^[^\/]+\//,"",$1); print $1}'`; do
+            git -C $i branch --track $brname $remote/$brname || true;
+            git -C $i checkout $brname && git -C $i pull;
+        done
+        echo "────────────────────────────────────────────────────────────────────────────────────────────────────────\n"
+    done
+}
 ```
