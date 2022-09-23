@@ -1,6 +1,6 @@
-# Git Functions for Ubuntu
+# Shell Functions for Linux
 
-Require: `figlet`, run `sudo apt-get install figlet`
+Require: `figlet`, run `sudo apt-get install figlet` or `brew install figlet`
 
 Edit your `~/.profile` file
 
@@ -63,5 +63,19 @@ git-sync() {
         done
         echo "────────────────────────────────────────────────────────────────────────────────────────────────────────\n"
     done
+}
+```
+
+```shell
+trivyscan() {
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --no-progress --exit-code 1 --no-progress --severity CRITICAL $1
+}
+```
+
+```shell
+git-set-personal() {
+    echo "Set git user to giaduongducminh@gmail.com"
+    git config --local user.name "Giã Dương Đức Minh"
+    git config --local user.email "giaduongducminh@gmail.com"
 }
 ```
