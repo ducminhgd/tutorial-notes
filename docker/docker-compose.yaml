@@ -1,0 +1,87 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0.22
+    container_name: mysql-db
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: on-failure
+    networks:
+      - mybridge
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: default_db
+      MYSQL_USER: admin-user
+      MYSQL_PASSWORD: mysql
+    volumes:
+      - ~/docker-volumes/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  postgresql:
+    image: postgres:14.5
+    container_name: postgre-db
+    restart: on-failure
+    networks:
+      - mybridge
+    environment:
+      POSTGRES_USER: postgre_user
+      POSTGRES_PASSWORD: postgre_ps
+      POSTGRES_DB: default_db
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: [ "CMD", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 80s
+
+  redis:
+    image: 'bitnami/redis:latest'
+    container_name: redis-db
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "6379:6379"
+    networks:
+      - mybridge
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 30s
+      timeout: 3s
+      retries: 30
+
+  mongodb:
+    image: mongo
+    container_name: mongo-db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mongodb
+    volumes:
+      - mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mybridge
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo-db:27017 --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  mongodb-data:
+    driver: local
+
+networks:
+  myhost:
+    driver: host
+  mybridge:
+    driver: bridge
