@@ -1,6 +1,25 @@
 version: "3.9"
 
 services:
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    command: [ "nginx-debug", "-g", "daemon off;" ]
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx:ro
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    networks:
+      - mybridge
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
   mysql:
     image: mysql:8.0.22
     container_name: mysql-db
@@ -36,7 +55,11 @@ services:
     ports:
       - 5432:5432
     healthcheck:
-      test: [ "CMD", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      test:
+        [
+          "CMD",
+          "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"
+        ]
       interval: 10s
       timeout: 30s
       retries: 5
