@@ -43,14 +43,16 @@ services:
       retries: 5
 
   postgresql:
-    image: postgres:14.5
+    image: postgres:15.1
     container_name: postgre-db
     restart: on-failure
     networks:
       - mybridge
+    volumes:
+      - ~/docker-volumes/postgresql/data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgre_user
-      POSTGRES_PASSWORD: postgre_ps
+      POSTGRES_PASSWORD: postgre_pw
       POSTGRES_DB: default_db
     ports:
       - 5432:5432
