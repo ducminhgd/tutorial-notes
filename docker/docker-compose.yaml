@@ -9,9 +9,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx:/etc/nginx:ro
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+      # - nginx-data:~/docker-volumes/nginx-conf/nginx:/etc/nginx
+      - nginx-data:/etc/nginx
     networks:
       - mybridge
 
@@ -20,6 +19,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+
   mysql:
     image: mysql:8.0.22
     container_name: mysql-db
@@ -49,7 +49,7 @@ services:
     networks:
       - mybridge
     volumes:
-      - ~/docker-volumes/postgresql/data:/var/lib/postgresql/data
+      - postgresql-data:/data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgre_user
       POSTGRES_PASSWORD: postgre_pw
@@ -104,6 +104,18 @@ services:
 volumes:
   mongodb-data:
     driver: local
+  postgresql-data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ${HOME}/docker-volumes/postgresql
+  nginx-data:
+    driver: 'local'
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '${HOME}/docker-volumes/nginx'
 
 networks:
   myhost:
