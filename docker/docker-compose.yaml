@@ -5,14 +5,15 @@ services:
     image: nginx:stable
     container_name: nginx
     command: [ "nginx-debug", "-g", "daemon off;" ]
-    ports:
-      - "80:80"
-      - "443:443"
+    network_mode: "host"
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    #   - "10080:10080"
     volumes:
-      # - nginx-data:~/docker-volumes/nginx-conf/nginx:/etc/nginx
       - nginx-data:/etc/nginx
-    networks:
-      - mybridge
+    # networks:
+    #   - myhost
 
   certbot:
     image: certbot/certbot
@@ -49,7 +50,7 @@ services:
     networks:
       - mybridge
     volumes:
-      - postgresql-data:/data:/var/lib/postgresql/data
+      - postgresql-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgre_user
       POSTGRES_PASSWORD: postgre_pw
@@ -68,7 +69,7 @@ services:
       start_period: 80s
 
   redis:
-    image: 'bitnami/redis:latest'
+    image: 'redis:latest'
     container_name: redis-db
     environment:
       - REDIS_REPLICATION_MODE=master
@@ -107,9 +108,9 @@ volumes:
   postgresql-data:
     driver: local
     driver_opts:
-      o: bind
-      type: none
-      device: ${HOME}/docker-volumes/postgresql
+      o: 'bind'
+      type: 'none'
+      device: '${HOME}/docker-volumes/postgresql/data'
   nginx-data:
     driver: 'local'
     driver_opts:
