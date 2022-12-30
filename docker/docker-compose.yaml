@@ -47,6 +47,7 @@ services:
     image: postgres:15.1
     container_name: postgre-db
     restart: on-failure
+    command: [ "postgres", "-c", "log_statement=all" ]
     networks:
       - mybridge
     volumes:
