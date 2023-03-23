@@ -77,6 +77,28 @@ services:
       retries: 5
       start_period: 80s
 
+  cassandra:
+    image: cassandra:4.1.1
+    container_name: cassandra
+    restart: on-failure
+    environment:
+      - CASSANDRA_SEEDS=cassandra
+      - CASSANDRA_CLUSTER_NAME=docker-cassandra-cluster
+      - CASSANDRA_AUTHENTICATOR=PasswordAuthenticator
+      - CASSANDRA_SUPERUSER_USER_NAME=root
+      - CASSANDRA_SUPERUSER_PASSWORD=cassandra
+    networks:
+      - mybridge
+    ports:
+      - 9042:9042
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   redis:
     image: 'redis:latest'
     container_name: redis-db
