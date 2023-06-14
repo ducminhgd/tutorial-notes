@@ -79,3 +79,9 @@ git-set-personal() {
     git config --local user.email "giaduongducminh@gmail.com"
 }
 ```
+
+```shell
+git-prune-branches() {
+    git branch --no-color | grep -vE "^([+]|\s($(git_main_branch)|$(git_develop_branch))\s*$)" | xargs git branch -D 2>/dev/null
+}
+```
