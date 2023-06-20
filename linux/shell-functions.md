@@ -2,7 +2,7 @@
 
 Require: `figlet`, run `sudo apt-get install figlet` or `brew install figlet`
 
-Edit your `~/.profile` file
+Edit your `~/.profile` file (or `~/.zshrc`)
 
 ```shell
 git-co() {
@@ -83,5 +83,23 @@ git-set-personal() {
 ```shell
 git-prune-branches() {
     git branch --no-color | grep -vE "^([+]|\s($(git_main_branch)|$(git_develop_branch))\s*$)" | xargs git branch -D 2>/dev/null
+}
+```
+
+```shell
+git-prune-release() {
+    git tag | xargs git tag -d
+}
+```
+
+```shell
+trivyimage() {
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image --no-progress --exit-code 1 --no-progress --severity CRITICAL $1
+}
+```
+
+```shell
+trivyfs() {
+    docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest fs --no-progress --exit-code 1 --no-progress --severity CRITICAL $1
 }
 ```
