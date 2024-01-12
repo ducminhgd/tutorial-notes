@@ -28,6 +28,28 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
 
+  mariadb:
+    image: mariadb:lts
+    container_name: maria-db
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: on-failure
+    networks:
+      - mybridge
+    environment:
+      MARIADB_ROOT_PASSWORD: mariadb
+      MARIADB_DATABASE: default_db
+      MARIADB_USER: mariadb_user
+      MARIADB_PASSWORD: mariadb_pw
+    volumes:
+      - ~/docker-volumes/mariadb:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   mysql:
     image: mysql:8.0
     container_name: mysql-db
