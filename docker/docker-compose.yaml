@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   go-dev-container:
     container_name: go-dev-container
@@ -80,10 +78,10 @@ services:
     networks:
       - mybridge
     volumes:
-      - ${HOME}/docker-volumes/postgresql-data:/var/lib/postgresql/data
+      - "postgresql-data:/var/lib/postgresql/data"
     environment:
-      POSTGRES_USER: postgre_user
-      POSTGRES_PASSWORD: postgre_pw
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_pw
       POSTGRES_DB: default_db
     ports:
       - 5432:5432
@@ -214,7 +212,7 @@ services:
     volumes:
       - "opensearch-data:/usr/share/opensearch/data"
     networks:
-      - bridge
+      - mybridge
 
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest # Make sure the version of opensearch-dashboards matches the version of opensearch installed on other nodes
@@ -227,10 +225,24 @@ services:
       OPENSEARCH_HOSTS: '["http://opensearch:9200"]' # Define the OpenSearch nodes that OpenSearch Dashboards will query
       DISABLE_SECURITY_DASHBOARDS_PLUGIN: true # disables security dashboards plugin in OpenSearch Dashboards
     networks:
-      - bridge
+      - mybridge
 
 networks:
   myhost:
     driver: host
   mybridge:
     driver: bridge
+
+volumes:
+  postgresql-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/docker-volumes/postgresql-data
+      o: bind
+  opensearch-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/docker-volumes/opensearch-data
+      o: bind
