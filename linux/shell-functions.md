@@ -78,7 +78,7 @@ git-set-personal() {
     git config --local user.name "Giã Dương Đức Minh"
     git config --local user.email "giaduongducminh@gmail.com"
     git config --local commit.gpgsign true
-    git config --global user.signingkey <your key here>
+    git config --local user.signingkey <your key here>
 }
 ```
 
