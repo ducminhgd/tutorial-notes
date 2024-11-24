@@ -77,6 +77,7 @@ git-set-personal() {
     echo "Set git user to giaduongducminh@gmail.com"
     git config --local user.name "Giã Dương Đức Minh"
     git config --local user.email "giaduongducminh@gmail.com"
+    git config --local --add --bool push.autoSetupRemote true
     git config --local commit.gpgsign true
     git config --local user.signingkey <your key here>
 }
