@@ -128,6 +128,8 @@ services:
       - "6379:6379"
     networks:
       - mybridge
+    volumes:
+      - redis-data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
@@ -249,4 +251,10 @@ volumes:
     driver_opts:
       type: none
       device: ${HOME}/docker-volumes/opensearch-data
+      o: bind
+  redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/docker-volumes/redis-data
       o: bind
