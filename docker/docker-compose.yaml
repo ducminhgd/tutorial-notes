@@ -39,7 +39,7 @@ services:
       MARIADB_USER: mariadb_user
       MARIADB_PASSWORD: mariadb_pw
     volumes:
-      - ~/docker-volumes/mariadb:/var/lib/mysql
+      - mariadb-data:/var/lib/mysql
     ports:
       - "3307:3306"
     healthcheck:
@@ -58,10 +58,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mysql
       MYSQL_DATABASE: default_db
-      MYSQL_USER: admin-user
-      MYSQL_PASSWORD: mysql
+      MYSQL_USER: mysql_user
+      MYSQL_PASSWORD: mysql_pw
     volumes:
-      - ${HOME}/docker-volumes/mysql:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
     healthcheck:
@@ -71,18 +71,14 @@ services:
       retries: 5
 
   postgresql:
-    image: postgres:15.3
+    image: postgres:15.1
     container_name: postgre-db
     restart: on-failure
-    command:
-      - "postgres"
-      - "-c"
-      - "config_file=/etc/postgresql/postgresql.conf"
+    command: ["postgres", "-c", "log_statement=all"]
     networks:
       - mybridge
     volumes:
-      - postgresql-data:/var/lib/postgresql/data
-      - ./custom-postgresql.conf:/etc/postgresql/postgresql.conf # need to add all config and override later
+      - "postgresql-data:/var/lib/postgresql/data"
     environment:
       POSTGRES_USER: postgres_user
       POSTGRES_PASSWORD: postgres_pw
@@ -244,17 +240,24 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ${HOME}/docker-volumes/postgresql-data
+      device: ${HOME}/docker-volumes/projects/postgresql-data
       o: bind
   opensearch-data:
+  mysql-data:
     driver: local
     driver_opts:
       type: none
-      device: ${HOME}/docker-volumes/opensearch-data
+      device: ${HOME}/docker-volumes/projects/mysql-data
       o: bind
   redis-data:
     driver: local
     driver_opts:
       type: none
-      device: ${HOME}/docker-volumes/redis-data
+      device: ${HOME}/docker-volumes/projects/redis-data
+      o: bind
+  mariadb-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/docker-volumes/projects/mariadb-data
       o: bind
