@@ -106,3 +106,9 @@ trivyfs() {
     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest fs --no-progress --exit-code 1 --no-progress --severity CRITICAL $1
 }
 ```
+
+```shell
+myip() {
+    curl ifconfig.me
+}
+```
