@@ -1,5 +1,185 @@
 # Go Development Rules
 
+## .gitignore
+
+**Go-specific patterns to ignore in version control:**
+
+```gitignore
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.txt
+coverage.html
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Build output
+/bin/
+/dist/
+/build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Air (live reload) temporary files
+tmp/
+.air.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled Object files
+*.o
+*.a
+
+# Debug files
+debug
+__debug_bin
+
+# Go mod cache (usually don't ignore)
+# go.sum  # Typically committed
+
+# Generated files
+*.pb.go  # (only if generated, consider committing)
+*_generated.go  # (only if generated, consider committing)
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Profiling data
+*.prof
+*.pprof
+cpu.out
+mem.out
+```
+
+## .dockerignore
+
+**Go-specific patterns to exclude from Docker builds:**
+
+```dockerignore
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+docs/
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+azure-pipelines.yml
+
+# Testing
+*_test.go
+/test/
+/tests/
+coverage.txt
+coverage.html
+*.out
+
+# Build artifacts (rebuild in container)
+/bin/
+/dist/
+/build/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Vendor (if using go modules, rebuild in container)
+vendor/  # Uncomment if not vendoring
+
+# Development tools config
+.golangci.yml
+.golangci.yaml
+.pre-commit-config.yaml
+
+# Environment files
+.env
+.env.*
+.env.example
+
+# Development scripts
+scripts/dev/
+Makefile
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Air live reload
+.air.toml
+tmp/
+
+# Logs
+*.log
+logs/
+
+# Go workspace
+go.work
+go.work.sum
+
+# Profiling
+*.prof
+*.pprof
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor backup files
+*~
+*.bak
+
+# Debug
+debug
+__debug_bin
+```
+
 ## Code Style and Formatting
 
 - Always run `gofmt` or `goimports` before committing
