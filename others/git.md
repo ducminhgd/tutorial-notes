@@ -17,3 +17,28 @@
 3. At that commit, run `git commit --amend -m "message you want to change"`.
 4. Continue rebasing `git rebase --continue`
 5. Push force `git push -f`.
+
+
+## Git configuration by directories
+
+Assump that we have directories structured like this tree
+
+```
+personal/
+├── project 1/
+├── project 2/
+└── gitconfig
+company/
+├── company project 1/
+├── company project 2/
+└── gitconfig
+```
+
+in the gitconfig global, add those lines
+
+```toml
+[includeIf "gitdir:~/personal/"]
+  path = ~/personal/.gitconfig
+[includeIf "gitdir:~/company/"]
+  path = ~/company/.gitconfig
+```
