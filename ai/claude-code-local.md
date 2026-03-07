@@ -40,3 +40,9 @@ https://ollama.com/blog/claude
     ```bash
     claude --model qwen3-coder
     ```
+
+    or, on Windows
+
+    ```shell
+    ANTHROPIC_AUTH_TOKEN=ollama ANTHROPIC_BASE_URL=http://localhost:11434 claude.cmd --model qwen3-coder
+    ```
